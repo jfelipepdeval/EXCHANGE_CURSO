@@ -1,0 +1,61 @@
+Exchange Server em rede DMZ ou LAN
+Atualizado em 13 de fevereiro de 2021
+ 
+Intercâmbio
+ 
+4 comentários
+Você precisa colocar o Microsoft Exchange Server em uma rede DMZ ou LAN? Quer saber quais são as melhores práticas para Exchange na DMZ? Neste artigo, você aprenderá se deve colocar um Exchange Server em uma rede DMZ ou LAN.
+
+Índice
+O que é DMZ
+Exchange Server em rede DMZ ou LAN
+Função de servidor de caixa de correio do Exchange na LAN
+Portas de rede necessárias para fluxo de mensagens com servidores de caixa de correio
+Função de servidor Transporte de Borda do Exchange na DMZ
+Portas de rede necessárias para fluxo de mensagens com servidores de Transporte de Borda
+Conclusão
+O que é DMZ
+Na segurança de computadores, uma DMZ ou zona desmilitarizada (às vezes chamada de rede de perímetro ou sub-rede protegida) é uma sub-rede física ou lógica. Ele contém e expõe os serviços externos de uma organização a uma rede não confiável, geralmente maior, como a Internet.
+
+O objetivo de uma DMZ é adicionar uma camada adicional de segurança à rede local (LAN) de uma organização. Um nó de rede externo pode acessar apenas o que está exposto na DMZ, enquanto o restante da rede da organização está protegido por firewall.
+
+A DMZ funciona como uma rede pequena e isolada posicionada entre a Internet e a rede privada. Se a sua concepção for eficaz, permitirá à organização mais tempo para detectar e resolver violações antes que estas penetrem ainda mais nas redes internas.
+
+Exchange Server em rede DMZ ou LAN
+Ao instalar o Exchange Server, você pode instalar uma das duas funções:
+
+Função de servidor de caixa de correio do Exchange
+Função de servidor Transporte de Borda do Exchange
+Cada função do Exchange funciona para uma finalidade diferente, seja uma função de Caixa de Correio ou de Transporte de Borda. É por isso que você precisa seguir a prática recomendada, que é colocar:
+
+Servidor de caixa de correio do Exchange na rede LAN
+Servidor de Transporte de Borda do Exchange na rede DMZ
+Ambas as funções de servidor Exchange precisam de portas de rede diferentes para que o fluxo de mensagens funcione (mais sobre isso abaixo).
+
+
+#Importante: Não restrinja o tráfego de rede entre servidores Exchange internos. Isso significa entre servidores internos do Exchange e servidores internos do Lync ou Skype for Business. Entre servidores Exchange internos 
+e controladores de domínio internos do Active Directory em todo e qualquer tipo de topologia. Se você tiver firewalls ou dispositivos de rede que possam potencialmente restringir 
+ou alterar esse tipo de tráfego de rede, será necessário configurar regras que permitam a comunicação livre e irrestrita entre esses servidores. Regras que permitem tráfego de rede de entrada e saída em qualquer porta, incluindo portas RPC aleatórias.
+
+Função de servidor de caixa de correio do Exchange na LAN
+A Microsoft recomenda que você coloque a função de servidor Caixa de Correio do Exchange na rede LAN . Coloque-o na rede LAN porque o servidor Exchange Mailbox precisa de comunicação com o Active Directory (AD). A maior parte das informações do Exchange é armazenada no AD.
+
+Não mova o servidor de caixa de correio do Exchange para a rede DMZ. Se você fizer isso, perderá a comunicação com os controladores de domínio na LAN privada. Como resultado, o servidor de Caixa de Correio do Exchange não funcionará. Em vez disso, mantenha o servidor de caixa de correio do Exchange próximo aos controladores de domínio na rede LAN.
+
+Portas de rede necessárias para fluxo de mensagens com servidores de caixa de correio
+É importante abrir as portas a seguir se você tiver um servidor de caixa de correio do Exchange.
+
+Propósito	Portas	Fonte	Destino
+Correio recebido	25/TCP (SMTP)	Internet (qualquer)	Servidor de caixa de correio
+Correio de saída	25/TCP (SMTP)	Servidor de caixa de correio	Internet (qualquer)
+Correio de saída
+(se enviado por proxy através do serviço Front End Transport)	25/TCP (SMTP)	Servidor de caixa de correio	Internet (qualquer)
+DNS para resolução de nomes do próximo mail hop*	53/UDP, 53/TCP (DNS)	Servidor de caixa de correio	Servidor dns
+*A resolução DNS do próximo salto de correio é uma parte fundamental do fluxo de correio em qualquer organização do Exchange. Os servidores Exchange responsáveis ​​por receber mensagens de entrada ou entregar mensagens de saída devem ser capazes de resolver nomes de host internos e externos para roteamento de mensagens adequado. E todos os servidores Exchange internos devem ser capazes de resolver nomes de host internos para roteamento de correio adequado. Há muitas maneiras diferentes de projetar uma infraestrutura DNS, mas o resultado importante é garantir que a resolução de nomes para o próximo salto esteja funcionando corretamente para todos os seus servidores Exchange.
+
+Leia mais: Troque portas de firewall para fluxo de mensagens e clientes »
+
+Conclusão
+Você aprendeu as práticas recomendadas para colocar um Exchange Server em uma rede DMZ ou LAN. A única função do Exchange que a Microsoft dará suporte em uma DMZ é a função Edge Transport. Todo o resto tem que estar na rede interna (LAN).
+
+Gostou deste artigo? Nesse caso, você pode gostar do artigo Encontre URLs do Exchange Server com PowerShell . Não se esqueça de nos seguir e compartilhar este artigo.
