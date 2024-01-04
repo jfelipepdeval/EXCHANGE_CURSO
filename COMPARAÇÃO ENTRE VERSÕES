@@ -1,0 +1,59 @@
+Comparação do Exchange Server Edition
+Atualizado em 3 de abril de 2023
+ 
+Intercâmbio
+ 
+4 comentários
+Antes de comprar o Exchange Server, você precisa dar uma olhada na comparação da edição do Exchange Server. O Microsoft Exchange Server está disponível em duas edições de servidor: Standard Edition e Enterprise Edition. Neste artigo, você aprenderá quando escolher entre Exchange Server Standard ou Exchange Server Enterprise.
+
+Índice
+Edições do Exchange Server
+Edição de teste do Exchange Server
+Migrar das edições do Exchange
+Conclusão
+Edições do Exchange Server
+Ao comprar o Exchange Server, você receberá uma licença do Exchange Server. A chave de licença precisa ser inserida após a instalação do Exchange Server. Ao inserir uma chave de produto válida , a edição Standard ou Enterprise suportada é estabelecida.
+
+Edição padrão do Exchange Server
+
+Máximo de 5 bancos de dados montados por servidor
+O limite de tamanho do banco de dados é de 1 TB (1.024 GB)
+Edição Corporativa do Exchange Server
+
+Máximo de 100 bancos de dados montados por servidor
+O limite de tamanho do banco de dados é 16 TB (16.384 GB)
+Importante: o servidor Exchange Standard Edition não pode montar bancos de dados maiores que 1 TB (1.024 GB). Isso significa que o banco de dados será desmontado automaticamente quando atingir 1 TB.
+
+Um banco de dados montado é um banco de dados que está em uso. Um banco de dados montado pode ser um banco de dados de caixa de correio ativo montado para uso por clientes ou um banco de dados de caixa de correio passivo montado. Embora seja possível criar mais bancos de dados do que os limites descritos acima, você só pode montar o número máximo especificado acima. O banco de dados de recuperação não conta para esse limite.
+
+Observação: você pode executar um DAG com o Exchange Standard e o Enterprise Edition. Depende de quantos bancos de dados montados cada servidor terá.
+
+Edição de teste do Exchange Server
+O servidor Exchange será executado automaticamente como uma edição de avaliação se você não fornecer uma chave. A Trial Edition funciona como um servidor Exchange Standard Edition e é útil se você quiser experimentar o Exchange antes de comprar.
+
+Você pode usar a licença da Edição de teste por até 180 dias. Se quiser continuar usando o servidor por mais de 180 dias, você precisará inserir uma chave de produto ou o centro de administração do Exchange (EAC) começará a mostrar lembretes de que você precisa inserir uma chave de produto para licenciar o servidor.
+
+Leia mais: Insira a chave do produto no Exchange Server »
+
+Migrar das edições do Exchange
+É possível usar uma chave de produto válida e migrar das edições do Exchange. Os métodos suportados para mover edições são:
+
+Teste para padrão
+Teste para empresa
+Padrão para Empresarial
+Os métodos não suportados para mover edições são:
+
+Empresarial para padrão
+Empresa para teste
+Padrão para teste
+Você não pode usar chaves de produto para fazer downgrade da Enterprise Edition para a Standard ou Trial Edition. Em vez disso, reinstale o Exchange Server se desejar fazer downgrade para essas edições.
+
+Observação: se você tiver menos de cinco bancos de dados, comece com o Exchange Server Standard Edition. Cada banco de dados tem capacidade de armazenamento de 1.024 GB (1 TB), totalizando no máximo 5.120 GB (5 TB). Quantas caixas de correio você coloca em cada banco de dados depende de você, não se esqueça do limite de capacidade do banco de dados. Você sempre pode atualizar para o Exchange Server Enterprise Edition. Por exemplo, se a empresa estiver crescendo.
+
+Importante: As informações neste artigo se aplicam somente às licenças do servidor Exchange. Você precisa comprar as Licenças de Acesso do Cliente (CALs) separadamente. Leia mais sobre o licenciamento do Exchange Server .
+
+Conclusão
+Você aprendeu a diferença entre as edições do Exchange Server. Existem duas edições, Standard e Enterprise. Veja a comparação da edição do Exchange Server antes de comprar o Exchange Server.
+
+Gostou deste artigo? Você também pode gostar do Exchange Server em rede DMZ ou LAN . Não se esqueça de nos seguir e compartilhar este artigo.
+
