@@ -1,0 +1,59 @@
+Considere a alta disponibilidade do Exchange Server
+Atualizado em 27 de junho de 2023
+ 
+Intercâmbio
+ 
+0 comentários
+Por que você consideraria implementar a alta disponibilidade (HA) do Exchange Server? Uma das respostas é bastante simples: o Exchange Server precisa permanecer ativo e funcionando. Neste artigo, você entenderá o HA do Exchange Server. Você sabia que Alta Disponibilidade é um dos termos mais utilizados no mundo da TI? É tudo uma questão de permanecer online.
+
+Índice
+Por que escolher alta disponibilidade no Exchange?
+Alta disponibilidade de servidores Exchange
+Grupo de disponibilidade de banco de dados do Exchange (DAG)
+Porcentagem de alta disponibilidade
+Conclusão
+Por que escolher alta disponibilidade no Exchange?
+Existem duas configurações de alta disponibilidade no Exchange Server. Uma delas é ter o Exchange Server em HA. A outra é ter os bancos de dados de caixa de correio em HA. Eu recomendo configurar ambos.
+
+Observação: você não pode configurar o HA quando não tiver mais de um Exchange Server.
+
+Por exemplo, você tem um Exchange Server em execução. A organização precisa enviar e receber e-mails 24 horas por dia, 7 dias por semana. Pergunte a você mesmo as seguintes questões:
+
+E se o Exchange Server travar?
+E se você estiver planejando manutenção no Exchange Server?
+Se você não tiver o HA configurado e o Exchange Server travar, o serviço de e-mail irá parar de funcionar. Isso significa que a organização não pode enviar ou receber emails. É aí que a alta disponibilidade entra em ação. Quando um servidor fica offline, não haverá tempo de inatividade. Outro Exchange Server cuidará de tudo a partir daí.
+
+Alta disponibilidade de servidores Exchange
+Você pode configurar a alta disponibilidade com DNS round-robin ou com um balanceador de carga .
+
+Grupo de disponibilidade de banco de dados do Exchange (DAG)
+Você pode ter os bancos de dados de caixa de correio em alta disponibilidade. Você usará o Grupo de Disponibilidade de Banco de Dados. Leia mais sobre como criar um DAG no Exchange Server .
+
+Porcentagem de alta disponibilidade
+O que significa quando uma empresa concede a você uma garantia de tempo de atividade de 99,99%? Isso significa que o tempo de inatividade é de 52,60 minutos por ano e 4,38 minutos por mês .
+
+Ajudará se você tiver um bom entendimento do HA em porcentagens. Uma ótima lista que você pode usar para garantias de tempo de atividade.
+
+Disponibilidade %	Tempo de inatividade por ano	Tempo de inatividade por mês	Tempo de inatividade por semana	Tempo de inatividade por dia
+90% (“um nove”)	36,53 dias	73,05 horas	16h80	2h40
+95% (“um nove e meio”)	18,26 dias	36,53 horas	8h40	1h20
+97%	10,96 dias	21,92 horas	5,04 horas	43,20 minutos
+98%	7,31 dias	14,61 horas	3,36 horas	28,80 minutos
+99% (“dois noves”)	3,65 dias	7h31	1,68 horas	14h40 minutos
+99,5% (“dois noves e meio”)	1,83 dias	3,65 horas	50,40 minutos	7,20 minutos
+99,8%	17h53	87,66 minutos	20,16 minutos	2,88 minutos
+99,9% (“três noves”)	8,77 horas	43,83 minutos	10,08 minutos	1,44 minutos
+99,95% (“três noves e meio”)	4,38 horas	21,92 minutos	5,04 minutos	43,20 segundos
+99,99% (“quatro noves”)	52,60 minutos	4,38 minutos	1,01 minutos	8,64 segundos
+99,995% (“quatro noves e meio”)	26h30 minutos	2,19 minutos	30,24 segundos	4,32 segundos
+99,999% (“cinco noves”)	5,26 minutos	26,30 segundos	6,05 segundos	864,00 milissegundos
+99,9999% (“seis noves”)	31,56 segundos	2,63 segundos	604,80 milissegundos	86,40 milissegundos
+99,99999% (“sete noves”)	3,16 segundos	262,98 milissegundos	60,48 milissegundos	8,64 milissegundos
+99,999999% (“oito noves”)	315,58 milissegundos	26,30 milissegundos	6,05 milissegundos	864,00 microssegundos
+99,9999999% (“nove noves”)	31,56 milissegundos	2,63 milissegundos	604,80 microssegundos	86,40 microssegundos
+Leia mais: Curso de alta disponibilidade do Exchange Server »
+
+Conclusão
+Você aprendeu sobre a alta disponibilidade do Exchange Server. HA não é algo que você configura apenas no nível do Exchange Server. Você pode aplicá-lo a outras configurações de hardware e software relacionadas a TI.
+
+Gostou deste artigo? Você pode gostar de verificar quais versões do .NET Framework estão instala
