@@ -1,0 +1,134 @@
+Crie o DAG Exchange Server passo a passo
+Atualizado em 9 de maio de 2023
+ 
+Intercâmbio
+ 
+32 comentários
+No curso Alta disponibilidade do Exchange Server , você aprendeu como balancear a carga do Exchange Server e manter o fluxo de mensagens ativo. Para concluir o curso é essencial criar um Database Availability Group (DAG) no Exchange 2013/2016/2019. Configure o Exchange DAG para manter as caixas de correio disponíveis quando um Exchange Server falhar.
+
+Índice
+Grupo de disponibilidade de banco de dados do Exchange
+DAG sem IP
+Interface de rede única
+Converta entre DAG baseado em IP e DAG sem IP
+Configurar grupo de disponibilidade de banco de dados
+Configurar testemunha de compartilhamento de arquivos (FSW)
+Criar DAG (grupo de disponibilidade de banco de dados)
+Adicionar servidores Exchange ao DAG
+Verifique a pasta do File Share Witness
+Conclusão
+Grupo de disponibilidade de banco de dados do Exchange
+Um grupo de disponibilidade de banco de dados (DAG) é o componente base da estrutura de alta disponibilidade e resiliência de site do servidor de Caixa de Correio incorporada ao Microsoft Exchange Server. Um DAG é um grupo de até 16 servidores de caixa de correio que hospeda um conjunto de bancos de dados e fornece recuperação automática no nível do banco de dados contra falhas que afetam servidores ou bancos de dados individuais.
+
+Observação: todos os servidores de um DAG devem executar a mesma versão do Exchange. Por exemplo, não é possível misturar servidores Exchange 2013 e servidores Exchange 2016 no mesmo DAG.
+
+DAG sem IP
+Existem duas possibilidades para configurar o DAG para Exchange Server:
+
+DAG baseado em IP (com IP)
+DAG sem IP (sem IP) desde Exchange 2013 SP1 (CU4)
+Observação: no Exchange Server 2016 e superior, a configuração padrão do DAG são DAGs sem IP.
+
+Neste artigo, abordaremos o DAG sem IP, que recomendamos configurar.
+
+Interface de rede única
+No Exchange Server 2016 e superior, não recomendamos a criação de uma rede dedicada para replicação (DAG). Use a mesma sub-rede e rede que você já configurou.
+
+A arquitetura preferida aproveita uma interface de rede única e sem equipe para conectividade do cliente e replicação de dados. Uma única interface de rede é tudo o que é necessário porque, em última análise, nosso objetivo é alcançar um modelo de recuperação padrão, independentemente da falha – quer ocorra uma falha no servidor ou uma falha na rede, o resultado é o mesmo: uma cópia do banco de dados é ativada em outro servidor dentro do DAG. Essa mudança arquitetônica simplifica a pilha de rede e elimina a necessidade de eliminar manualmente a interferência de pulsação.
+
+Leia mais sobre a arquitetura preferida pela equipe do Exchange.
+
+Converta entre DAG baseado em IP e DAG sem IP
+Você deseja migrar do DAG baseado em IP para o DAG sem IP ou vice-versa? Você precisa criar um novo DAG baseado em IP ou um DAG sem IP porque não há opção de conversão.
+
+Configurar grupo de disponibilidade de banco de dados
+Em quatro etapas, você configurará o Exchange DAG.
+
+Configurar testemunha de compartilhamento de arquivos (FSW)
+A primeira etapa é configurar as permissões do servidor testemunha de compartilhamento de arquivos. Recomendamos que você use um servidor de arquivos e não qualquer outro servidor.
+
+Importante: não use um controlador de domínio como servidor testemunha!
+
+Faça login no servidor de arquivos. Vá para Ferramentas Administrativas e inicie Gerenciamento do Computador .
+
+Crie ferramentas administrativas passo a passo do DAG Exchange 2016
+Expanda Usuários e Grupos Locais e clique em Grupos . Clique duas vezes no grupo Administradores e adicione o grupo Exchange Trusted Subsystem .
+
+Adicionar grupo Exchange Trusted Subsystem ao grupo de administradores
+O primeiro passo está concluído. Vamos criar o DAG na próxima etapa.
+
+Criar DAG (grupo de disponibilidade de banco de dados)
+Entre no Exchange Admin Center. Clique em servidores no painel de recursos e clique em grupos de disponibilidade de banco de dados nas guias. Na barra de ferramentas, clique em + para criar um novo DAG.
+
+Criar DAG no Exchange Admin Center
+Preencha o nome do DAG, servidor testemunha e diretório testemunha. Deixe o endereço IP vazio ou especifique o endereço IP 255.255.255.255. Clique em Salvar .
+
+Nota: O Exchange Server adicionará automaticamente o endereço IP 255.255.255.255 se você deixá-lo vazio.
+
+Se o Firewall do Windows estiver habilitado no servidor testemunha, ele poderá bloquear a criação do DAG. O Exchange usa o Windows Management Instrumentation (WMI) para criar o diretório e o compartilhamento de arquivos no servidor testemunha
+
+Execute um dos seguintes procedimentos no servidor testemunha:
+
+Habilite a exceção WMI no Firewall do Windows
+Desative o Firewall do Windows
+Configurar novo grupo de disponibilidade de banco de dados
+O grupo de disponibilidade do banco de dados é criado. Você verá o DAG na visualização de lista. Clique duas vezes em DAG01-2016.
+
+DAG disponível na visualização de lista após a criação
+No menu, clique em endereço IP . Verifique se você vê o endereço IP 255.255.255.255 .
+
+Verifique o endereço IP do grupo de disponibilidade do banco de dados 255.255.255.255
+O segundo passo está concluído. A terceira etapa é adicionar os servidores Exchange ao DAG.
+
+Adicionar servidores Exchange ao DAG
+Selecione o grupo de disponibilidade de banco de dados na visualização de lista e clique no ícone Gerenciar associação ao DAG .
+
+Gerenciar associação ao DAG
+Clique no ícone + .
+
+Adicione os servidores Exchange
+Selecione os servidores Exchange . Clique em Adicionar e siga com OK.
+
+Selecione servidores Exchange para o DAG
+Clique em Salvar .
+
+Salve os servidores Exchange
+A tarefa instalará o cluster de failover do Windows em ambos os servidores Exchange.
+
+Observação: se a operação falhar, leia o artigo Não é possível adicionar servidor membro do DAG no Exchange Server .
+
+A tarefa é instalar o cluster de failover do Windows no Exchange Server
+A operação adicionará o Exchange Server ao grupo de disponibilidade de banco de dados.
+
+Adicionando servidor ao grupo de disponibilidade de banco de dados
+
+
+O mesmo se aplicará aos outros servidores Exchange.
+
+A tarefa é instalar o cluster de failover do Windows no Exchange Server
+A operação será concluída. Clique em Fechar .
+
+Operação DAG concluída com sucesso
+
+
+A coluna Servidores Membros mostra os Servidores Exchange.
+
+Servidores membros do DAG adicionados
+O terceiro passo está concluído. Na etapa quatro, que é a última, você verificará a pasta do servidor testemunha.
+
+Verifique a pasta do File Share Witness
+Vá para a unidade C:\ do servidor de arquivos e verifique se a pasta DAG01-2016 foi criada. Após abrir a pasta, você encontrará uma pasta GUID, e nela verá dois arquivos com o nome:
+
+VerifyShareWriteAccess.txt
+Testemunha.log
+Pode levar alguns minutos até que ambos os arquivos apareçam. O tamanho é pequeno e vai continuar assim.
+
+Nota: Exclua a pasta File Share Witness do seu produto antivírus/segurança. Leia mais no artigo Exclusões de antivírus para Exchange Server .
+
+Verifique os arquivos testemunhas de compartilhamento de arquivos
+Você configurou com êxito um grupo de disponibilidade de banco de dados do Exchange. A próxima etapa é adicionar cópias do banco de dados de caixa de correio .
+
+Continue lendo: Mudança no comportamento da preferência de ativação do DAG no Exchange 2016 CU2 »
+
+Conclusão
+Você aprendeu como criar um DAG no Exchange Server passo a passo. Antes de começar, adicione o subsistema confiável do Exchange ao grupo de administradores locais do Witness Server. Depois disso, crie o DAG no Exchange Admin Center e adicione os Exchange Servers ao DAG. Não se esqueça de verificar seu trabalho como sempre.
