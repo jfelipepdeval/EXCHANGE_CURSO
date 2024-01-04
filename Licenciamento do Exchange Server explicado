@@ -1,0 +1,121 @@
+Os Exchange Servers são executados em muitas organizações, mas licenciar Exchange Servers é um grande problema. 
+A maioria das organizações pensa que está licenciada e pronta quando compra e insere uma chave de produto no Exchange Server.
+Infelizmente, isto não é verdade. Existem mais licenças que você precisa comprar. Neste artigo, explicaremos quais licenças do Exchange Server você precisa.
+
+Licenças do Windows Server
+Esta é a chave do produto Windows Server que você insere para ativar o Windows Server.
+
+icenças de acesso para cliente (CALs) do Windows Server
+As CALs do Windows Server não são instaladas ou rastreadas em nenhum lugar, exceto por meio da documentação que acompanha sua compra.
+
+Existem três tipos de CALs do Windows Server:
+
+CAL do usuário
+CAL do dispositivo
+Conector Externo
+Leia mais sobre licenças de acesso para cliente e licenças de gerenciamento da Microsoft .
+
+Observação: você pode misturar e combinar os tipos de CALs na organização.
+
+Licenças do Exchange Server
+Esta é a chave de produto do Exchange Server que você insere para ativar o Exchange Server.
+
+Existem duas licenças do Exchange Server:
+
+Padrão: Projetado para as necessidades de caixa de correio de organizações de pequeno e médio porte. Também apropriado para funções que não sejam de caixa de correio em uma implantação maior do Exchange. Esta edição suporta de 1 a 5 bancos de dados de caixas de correio.
+Empresarial: Projetado para organizações maiores que podem exigir um número maior de bancos de dados de caixas de correio. Esta edição suporta de 1 a 100 bancos de dados de caixas de correio.
+Leia mais sobre as edições do Exchange Server »
+
+Licenças de acesso de cliente (CALs) do Exchange Server
+As CALs do Exchange Server são pedaços de papel que você guarda quando é auditado e não pode instalá-los. Apenas certifique-se de instalar a chave de licença do Exchange Server .
+
+Com este tipo de licença, é necessária uma CAL para cada usuário ou dispositivo que acessa o software do servidor. Existem dois tipos de CALs para Exchange Server, ambos funcionam com qualquer edição do servidor:
+
+Padrão: projetado para ajudar os usuários a serem mais produtivos em praticamente qualquer plataforma, navegador ou dispositivo móvel, com recursos do Exchange Server 2019 que ajudam seus usuários a serem produtivos, não importa onde estejam, ao mesmo tempo que ajudam a proteger os dados da sua organização. Para ativar recursos do Standard CAL para um usuário, o usuário deve estar licenciado com o Standard CAL.
+Empresarial: Projetado para permitir que as organizações reduzam o custo e a complexidade do atendimento aos requisitos de conformidade com novas funcionalidades integradas de arquivamento e recursos de proteção de informações. A Enterprise CAL é vendida como um complemento da Standard CAL – para ativar os recursos da Enterprise CAL, o usuário deve ser licenciado com uma Standard CAL mais uma Enterprise CAL.
+As CALs padrão do Exchange Server são suficientes para o uso padrão do Exchange Server, como e-mail, calendário, contatos e muito mais. Entretanto, CALs Enterprise adicionais do Exchange Server serão necessárias se você quiser usar a funcionalidade Enterprise.
+
+A tabela a seguir fornece uma análise detalhada dos recursos de cada CAL.
+
+
+curso	CAL padrão	CAL padrão + empresarial
+E-mail, calendário, contatos e tarefas	✓	✓
+Outlook na Web (suporte para Internet Explorer, Firefox, Chrome, Safari e Edge)	✓	✓
+Aplicativos para Outlook e Outlook na Web	✓	✓
+Caixas de correio do site	✓	✓
+Recursos de controle de acesso baseado em função (RBAC)	✓	✓
+Registro no diário	Por banco de dados	Por usuário/lista de distribuição
+Descriptografia do diário	☓	✓
+Políticas de retenção	Padrão e personalizado	Padrão e personalizado
+Arquivo no local	☓	✓
+Pesquisa em várias caixas de correio	☓	✓
+Retenção no local	☓	✓
+Proteção e controle de informações (IPC): regras de proteção de transporte, regras de proteção do Outlook, pesquisa de gerenciamento de direitos de informação (IRM)	☓	✓
+
+
+CALs de usuário versus CALs de dispositivo
+Tanto as CALs padrão quanto as CALs empresariais vêm em dois tipos:
+
+CALs de usuário: São as mais baratas e fáceis quando seus funcionários trabalham com vários dispositivos (PC, laptop, tablet, telefone).
+CALs de dispositivo: São mais econômicas e convenientes quando vários de seus funcionários (em meio período, por exemplo) trabalham no mesmo dispositivo.
+Observação: você pode misturar e combinar CALs de usuário e CALs de dispositivo na organização.
+
+Exemplo de licenciamento do Exchange Server
+Aqui estão alguns exemplos que mostram quais licenças do Exchange Server você precisa:
+
+Exemplo 1. Você tem 2 servidores Exchange com 1.000 usuários.
+
+2x licenças do Windows Server
+1000x Windows Server CALs (usuário ou dispositivo)
+2x licenças do Exchange Server
+1000x CALs do Exchange Server (usuário ou dispositivo)
+Exemplo 2. Você deseja instalar 1 Exchange Server com 500 usuários.
+
+1x Servidor Windows
+500x CALs do Windows Server (usuário ou dispositivo)
+1x licença do Exchange Server
+500x CALs do Exchange Server (usuário ou dispositivo)
+Obtenha a contagem de licenças de acesso para cliente (CALs) do Exchange Server
+Se você já possui uma organização do Exchange Server, poderá contar as Licenças de Acesso para Cliente (CALs) para o Exchange Server 2013/2016/2019.
+
+1. Execute o Shell de Gerenciamento do Exchange.
+
+2. Execute o cmdlet Get-ExchangeServerAccessLicense .
+
+Get-ExchangeServerAccessLicense | ft -AutoSize
+Em nosso exemplo, a saída do console é semelhante a esta.
+
+[PS] C:\>Get-ExchangeServerAccessLicense | ft -AutoSize
+
+ProductName          LicenseName                             UnitLabel TabulationMethod
+-----------          -----------                             --------- ----------------
+Exchange Server 2016 Exchange Server 2016 Standard Edition   Server    Net
+Exchange Server 2016 Exchange Server 2016 Enterprise Edition Server    Net
+Exchange Server 2016 Exchange Server 2016 Standard CAL       CAL       Net
+Exchange Server 2016 Exchange Server 2016 Enterprise CAL     CAL       Net
+3. Obtenha uma lista dos usuários/dispositivos com esse nome de licença CAL.
+
+Copie o nome da licença Standard CAL e preencha-o no comando abaixo para listar os usuários/dispositivos.
+
+Get-ExchangeServerAccessLicenseUser –LicenseName "Exchange Server 2016 Standard CAL"
+Copie o nome da licença Enterprise CAL e preencha-o no comando abaixo para listar os usuários/dispositivos.
+
+Get-ExchangeServerAccessLicenseUser –LicenseName "Exchange Server 2016 Enterprise CAL"
+4. Conte as CALs (licenças de acesso para cliente) do Exchange Server.
+
+Acesse o operador de contagem do PowerShell no comando colocando o objeto entre parênteses “()” e adicionando um ponto “ . ”Seguido por Conde .
+
+Para o CAL padrão.
+
+(Get-ExchangeServerAccessLicenseUser –LicenseName "Exchange Server 2016 Standard CAL").Count
+Para o Enterprise CAL.
+
+(Get-ExchangeServerAccessLicenseUser –LicenseName "Exchange Server 2016 Enterprise CAL").Count
+É isso!
+
+Continue lendo: Como habilitar o TLS 1.2 no Windows Server »
+
+Conclusão
+Você aprendeu como funciona o licenciamento do Exchange Server. É mais do que apenas licenciar o Windows Server e o Exchange Server inserindo uma chave de produto. Isso ocorre porque você precisa comprar CALs do Windows Server e CALs do Exchange Server, que muitas empresas parecem esquecer.
+
+Gostou deste artigo? Você também pode gostar de design e planejamento de namespace de alta disponibilidade do Exchange .
